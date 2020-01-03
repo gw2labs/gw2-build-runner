@@ -36,8 +36,7 @@ public abstract class DurationStackingBuffOrCondition extends StackingBuffOrCond
     public void assignTo(Gw2Character gw2Character) {
         final int numberOfAppliedStacks = gw2Character
             .getBuffOrConditions(getType())
-            .filter(b -> b instanceof DurationStackingBuffOrCondition)
-            .map(b -> b.getAppliedNumberOfStacks())
+            .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
             .reduce(0, Integer::sum);
 
         appliedNumberOfStacks = Math.min(getWantedNumberOfStacks(), getType().getMaxNumberOfStacks() - numberOfAppliedStacks);
