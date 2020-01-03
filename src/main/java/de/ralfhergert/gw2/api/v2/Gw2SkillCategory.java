@@ -1,0 +1,31 @@
+package de.ralfhergert.gw2.api.v2;
+
+public enum Gw2SkillCategory {
+    Burst,
+    Cantrip,
+    CelestialAvatar,
+    Clone,
+    Consecration,
+    Corruption,
+    Elixir,
+    Gadget,
+    Glamour,
+    LegendaryAssassin,
+    LegendaryDemon,
+    LegendaryDwarf,
+    Mark,
+    Meditation,
+    Overload,
+    Phantasm,
+    Physical,
+    PrimalBurst,
+    Shout,
+    Signet,
+    Stance,
+    Survival,
+    Symbol,
+    Trap,
+    Trick,
+    Venom,
+    Virtue
+}
