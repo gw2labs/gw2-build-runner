@@ -69,12 +69,12 @@ public enum Specialization {
     Herald(52, Profession.Revenant, true, "Herald"),
     Renegade(63, Profession.Revenant, true, "Renegade");
 
+    private static final Map<Integer,Specialization> idLookupMap = new HashMap<>();
+
     private int id;
     private Profession profession;
     private boolean isElite;
     private String name;
-
-    private static final Map<Integer,Specialization> idLookupMap = new HashMap<>();
 
     Specialization(int id, Profession profession, boolean isElite, String name) {
         this.id = id;
