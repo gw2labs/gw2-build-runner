@@ -1,5 +1,8 @@
 package de.ralfhergert.generic.number;
 
+/**
+ * This operation increases a double number by a fix double increase value.
+ */
 public class IncreaseByDouble extends IncreaseOperation {
 
     public IncreaseByDouble(Number increase) {

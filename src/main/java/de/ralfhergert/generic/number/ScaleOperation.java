@@ -3,6 +3,9 @@ package de.ralfhergert.generic.number;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * This operation scales a number by a given factor.
+ */
 public class ScaleOperation implements Function<Number,Number> {
 
     protected final Number factor;

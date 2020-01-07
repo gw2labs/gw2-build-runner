@@ -3,6 +3,9 @@ package de.ralfhergert.generic.number;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Generic class for increase operations.
+ */
 public abstract class IncreaseOperation implements Function<Number,Number> {
 
     protected final Number increase;
