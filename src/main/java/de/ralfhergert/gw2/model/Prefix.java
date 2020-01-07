@@ -2,8 +2,6 @@ package de.ralfhergert.gw2.model;
 
 import de.ralfhergert.gw2.modifier.CharacterAttributeModifier;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static de.ralfhergert.gw2.model.CharacterAttribute.*;
