@@ -51,7 +51,7 @@ public class BuildId {
      */
     private Profession readProfession(Collection<ConfigurationBlock> blocks) {
         // preliminary check
-        if (blocks.stream().noneMatch(block -> block.getIdentifier().equals(("p")))) {
+        if (blocks.stream().noneMatch(block -> block.getIdentifier().equals("p"))) {
             throw new IllegalArgumentException("buildId does not contain a profession definition. Please add a block like for instance \"p:Guardian\".");
         }
 
