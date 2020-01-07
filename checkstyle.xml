@@ -71,9 +71,6 @@
         <module name="ParameterAssignment"/>
         <module name="DefaultComesLast"/>
         <module name="FallThrough"/>
-        <module name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="4"/>
-        </module>
         <module name="UnnecessaryParentheses"/>
 
         <!-- Imports -->
