@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+/**
+ * This class represents a Guild Wars 2 (player) character with all its
+ * attributes, equipment, specializations and traits.
+ */
 public class Gw2Character {
 
     private final Profession profession;
