@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This group allows to collect multiple {@link Triggerable}s to trigger them all together.
+ */
 public class TriggerableGroup implements Triggerable {
 
     private final List<Triggerable> triggerables = new ArrayList<>();
@@ -19,6 +22,6 @@ public class TriggerableGroup implements Triggerable {
 
     @Override
     public void trigger() {
-       triggerables.forEach(Triggerable::trigger);
+        triggerables.forEach(Triggerable::trigger);
     }
 }
