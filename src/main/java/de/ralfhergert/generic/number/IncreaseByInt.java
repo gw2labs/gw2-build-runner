@@ -11,11 +11,11 @@ public class IncreaseByInt extends IncreaseOperation {
 
     @Override
     public Number apply(Number a) {
-        return a.intValue() + increase.intValue();
+        return a.intValue() + getIncrease().intValue();
     }
 
     @Override
     public String toString() {
-        return "IncreaseByInt{increase=" + increase + "}";
+        return "IncreaseByInt{increase=" + getIncrease() + "}";
     }
 }

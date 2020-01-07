@@ -8,7 +8,7 @@ import java.util.function.Function;
  */
 public abstract class IncreaseOperation implements Function<Number,Number> {
 
-    protected final Number increase;
+    private final Number increase;
 
     public IncreaseOperation(Number increase) {
         this.increase = increase;

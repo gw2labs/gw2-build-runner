@@ -11,11 +11,11 @@ public class IncreaseByDouble extends IncreaseOperation {
 
     @Override
     public Number apply(Number a) {
-        return a.doubleValue() + increase.doubleValue();
+        return a.doubleValue() + getIncrease().doubleValue();
     }
 
     @Override
     public String toString() {
-        return "IncreaseByDouble{increase=" + increase + "}";
+        return "IncreaseByDouble{increase=" + getIncrease() + "}";
     }
 }
