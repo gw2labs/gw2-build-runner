@@ -29,7 +29,7 @@ public class GetTrait extends ThrottledRequest {
     public Gw2Trait get() {
         try {
             return reader.readValue(execute(request).get(30, TimeUnit.SECONDS).body());
-        } catch (JsonProcessingException|InterruptedException| ExecutionException| TimeoutException e) {
+        } catch (JsonProcessingException | InterruptedException | ExecutionException | TimeoutException e) {
             throw new Error("Could not fetch trait '" + traitId + "'", e);
         }
     }
