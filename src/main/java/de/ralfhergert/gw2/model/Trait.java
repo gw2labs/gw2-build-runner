@@ -783,8 +783,7 @@ public enum Trait {
     Quickfire(2179, Firebrand, 3, 1, Major, "Quickfire"),
     WeaversProwess(2180, Specialization.Weaver, 2, 0, Major, "Weaver's Prowess"),
     AmbushCommander(2181, Renegade, 1, 0, Minor, "Ambush Commander"),
-    RighteousRebel(2182, Renegade, 3, 2, Major, "Righteous Rebel"),
-    ;
+    RighteousRebel(2182, Renegade, 3, 2, Major, "Righteous Rebel");
 
     private static final Map<Integer,Trait> idLookupMap = new HashMap<>();
 
