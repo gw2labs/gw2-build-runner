@@ -17,4 +17,5 @@ public class IncreaseByInt extends IncreaseOperation {
     @Override
     public String toString() {
         return "IncreaseByInt{increase=" + increase + "}";
-    }}
+    }
+}
