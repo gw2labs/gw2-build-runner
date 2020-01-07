@@ -10,6 +10,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Tests for {@link CamelCaseMatcher}.
+ */
 public class CamelCaseMatcherTest {
 
     @Test

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Test for {@link ConfigurationBlockParser}
+ */
 public class ConfigurationBlockParserTest {
 
     @Test
