@@ -8,7 +8,7 @@ import java.util.function.Function;
  */
 public class ScaleOperation implements Function<Number,Number> {
 
-    protected final Number factor;
+    private final Number factor;
 
     public ScaleOperation(Number factor) {
         this.factor = factor;
