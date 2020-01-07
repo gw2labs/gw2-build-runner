@@ -7,6 +7,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * This performer ensures that the given {@link PerformQueuedRequestRunnable} has
+ * a thread to run in.
+ */
 public class QueuedRequestPerformer {
 
     private static final Logger LOG = LoggerFactory.getLogger(QueuedRequestPerformer.class);
