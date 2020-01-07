@@ -12,6 +12,8 @@ import java.util.stream.Stream;
  *  - "Camel"
  *  - "CamCa" or even
  *  - "CC"
+ *
+ * @param <Type> Type of object this matcher should operate on.
  */
 public class CamelCaseMatcher<Type> implements Predicate<Type> {
 
