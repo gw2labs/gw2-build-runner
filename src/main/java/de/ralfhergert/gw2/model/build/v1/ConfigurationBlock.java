@@ -37,7 +37,7 @@ public class ConfigurationBlock {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ConfigurationBlock that = (ConfigurationBlock) o;
+        ConfigurationBlock that = (ConfigurationBlock)o;
         return Objects.equals(identifier, that.identifier) &&
             Objects.equals(content, that.content);
     }
