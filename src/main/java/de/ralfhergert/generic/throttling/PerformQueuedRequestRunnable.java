@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * This runnable allows to perform multiple HTTP-requests in a throttled manner.
+ * Whenever one of the requests receives an HTTP-429-too-many-requests, the grace
+ * period between the requests is increased an the affected request is retried.
+ */
 public class PerformQueuedRequestRunnable implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(PerformQueuedRequestRunnable.class);
@@ -85,6 +90,9 @@ public class PerformQueuedRequestRunnable implements Runnable {
         }
     }
 
+    /**
+     * Helper object to store an {@link HttpRequest} together with its response future.
+     */
     private static class QueuedRequest {
 
         private final HttpRequest request;
