@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * This value only allows to be modified by its attached modifiers.
+ *
+ * @param <ValueType> type of the value itself
+ * @param <ContextType> type of the object this value belongs to
  */
 public class Value<ValueType,ContextType> {
 

@@ -3,6 +3,15 @@ package de.ralfhergert.generic.value;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementations of this class are able to modify a {@link Value}. Whenever a modifier
+ * want to modify the value differently a call to {@link #promoteModification()} informs
+ * all dependent listeners, as the Value itself is one of them and by being informed it will
+ * flag itself as being a "dirty value".
+ *
+ * @param <ValueType> type of the value
+ * @param <ContextType> type of the object this value belongs to
+ */
 public abstract class ValueModifier<ValueType,ContextType> implements Assignable<ContextType> {
 
     private final Object source;

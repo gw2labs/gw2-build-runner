@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This group allow to bundle multiple {@link Assignable} and assign them with one call.
+ *
+ * @param <Target> object type the assignable can be assigned to.
+ */
 public class AssignableGroup<Target> implements Assignable<Target> {
 
     private final List<Assignable<Target>> assignables = new ArrayList<>();
