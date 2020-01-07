@@ -69,7 +69,7 @@ public enum Specialization {
     Herald(52, Profession.Revenant, true, "Herald"),
     Renegade(63, Profession.Revenant, true, "Renegade");
 
-    private static final Map<Integer,Specialization> idLookupMap = new HashMap<>();
+    private static final Map<Integer,Specialization> ID_LOOKUP_MAP = new HashMap<>();
 
     private int id;
     private Profession profession;
@@ -100,7 +100,7 @@ public enum Specialization {
     }
 
     public static Specialization getById(int id) {
-        return idLookupMap.computeIfAbsent(id, Specialization::findById);
+        return ID_LOOKUP_MAP.computeIfAbsent(id, Specialization::findById);
     }
 
     private static Specialization findById(int id) {

@@ -785,10 +785,10 @@ public enum Trait {
     AmbushCommander(2181, Renegade, 1, 0, Minor, "Ambush Commander"),
     RighteousRebel(2182, Renegade, 3, 2, Major, "Righteous Rebel");
 
-    private static final Map<Integer,Trait> idLookupMap = new HashMap<>();
+    private static final Map<Integer,Trait> ID_LOOKUP_MAP = new HashMap<>();
 
     static {
-        Stream.of(values()).forEach(trait -> idLookupMap.put(trait.id, trait));
+        Stream.of(values()).forEach(trait -> ID_LOOKUP_MAP.put(trait.id, trait));
     }
 
     private final int id;
@@ -832,6 +832,6 @@ public enum Trait {
     }
 
     public static Trait getById(int id) {
-        return idLookupMap.get(id);
+        return ID_LOOKUP_MAP.get(id);
     }
 }
