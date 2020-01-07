@@ -31,7 +31,7 @@ public class ScaleOperation implements Function<Number,Number> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ScaleOperation that = (ScaleOperation) o;
+        ScaleOperation that = (ScaleOperation)o;
         return Objects.equals(factor, that.factor);
     }
 

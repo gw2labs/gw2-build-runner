@@ -29,7 +29,7 @@ public abstract class IncreaseOperation implements Function<Number,Number> {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        IncreaseOperation that = (IncreaseOperation) o;
+        IncreaseOperation that = (IncreaseOperation)o;
         return Objects.equals(increase, that.increase);
     }
 
