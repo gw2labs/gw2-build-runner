@@ -67,7 +67,7 @@ public class CheckForChanges implements Runnable {
     @Override
     public void run() {
         final List<Profession> professionsToCheck = checkProfessions(new GetAllProfessions().get(), issues::add);
-        LOG.debug("checking {} professions", professionsToCheck. size());
+        LOG.debug("checking {} professions", professionsToCheck.size());
         if (stopOnError && !issues.isEmpty()) {
             return;
         }
@@ -76,13 +76,13 @@ public class CheckForChanges implements Runnable {
         }
 
         final List<Specialization> specializationsToCheck = checkSpecializations(new GetAllSpecializations().get(), issues::add);
-        LOG.debug("checking {} specializations", specializationsToCheck. size());
+        LOG.debug("checking {} specializations", specializationsToCheck.size());
         for (Specialization specialization : specializationsToCheck) {
             checkSpecialization(new GetSpecialization(specialization.getId()).get(), issues::add);
         }
 
         final List<Trait> traitsToCheck = checkTraits(new GetAllTraits().get(), issues::add);
-        LOG.debug("checking {} traits", traitsToCheck. size());
+        LOG.debug("checking {} traits", traitsToCheck.size());
     }
 
     public List<ValidationIssue> getIssues() {
@@ -201,8 +201,9 @@ public class CheckForChanges implements Runnable {
             .map(id -> {
                 final Gw2Trait gw2Trait = new GetTrait(id).get();
                 return new ValidationIssue("unknown trait with id '" + id + "' found: " + gw2Trait.getName()
-                    + "("+id+", "+Specialization.getById(gw2Trait.getSpecialization()).name()+", "
-                    + gw2Trait.getTier() +", "+ gw2Trait.getOrder() +", " + gw2Trait.getSlot().name() +", \""+gw2Trait.getName()+"\"),");
+                    + "(" + id + ", " + Specialization.getById(gw2Trait.getSpecialization()).name() + ", "
+                    + gw2Trait.getTier() + ", " + gw2Trait.getOrder() + ", " + gw2Trait.getSlot().name()
+                    + ", \"" + gw2Trait.getName() + "\"),");
             })
             .forEach(issueHandler);
 
