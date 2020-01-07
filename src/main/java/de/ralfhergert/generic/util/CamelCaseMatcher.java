@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * This CamelCase matcher allows to find enums by using shorter version of the name.
+ * This CamelCase matcher allows to find enums by using a shorter version of the name.
  * For instance an enum with the name "CamelCase" will be matched by searching for:
  *  - "Camel"
  *  - "CamCa" or even
