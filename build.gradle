@@ -17,6 +17,10 @@ sourceCompatibility = 1.11
 
 checkstyle.configFile = file('checkstyle.xml')
 
+jacoco {
+    toolVersion = '0.8.5'
+}
+
 jacocoTestReport {
     reports {
         xml.enabled true
