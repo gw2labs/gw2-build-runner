@@ -84,7 +84,7 @@ public class CharacterAttributeModifier extends ValueModifier<Number,Gw2Characte
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CharacterAttributeModifier that = (CharacterAttributeModifier) o;
+        CharacterAttributeModifier that = (CharacterAttributeModifier)o;
         return Objects.equals(operation, that.operation) &&
             key == that.key;
     }
