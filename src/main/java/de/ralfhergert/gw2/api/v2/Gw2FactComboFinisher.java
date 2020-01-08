@@ -3,6 +3,9 @@ package de.ralfhergert.gw2.api.v2;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.ralfhergert.gw2.model.ComboFinisherType;
 
+/**
+ * A fact specifying that a skill is a combo finisher.
+ */
 public class Gw2FactComboFinisher extends Gw2Fact {
 
     private ComboFinisherType finisherType;

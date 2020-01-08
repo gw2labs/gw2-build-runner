@@ -2,6 +2,9 @@ package de.ralfhergert.gw2.api.v2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * This class represents a fact specifying a buff.
+ */
 public class Gw2FactBuff extends Gw2Fact {
 
     private Gw2BuffConditionType status;

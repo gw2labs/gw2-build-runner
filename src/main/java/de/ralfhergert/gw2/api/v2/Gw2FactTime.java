@@ -1,5 +1,8 @@
 package de.ralfhergert.gw2.api.v2;
 
+/**
+ * A fact describing a duration.
+ */
 public class Gw2FactTime extends Gw2Fact {
 
     private int duration;

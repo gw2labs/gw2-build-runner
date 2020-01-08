@@ -1,5 +1,8 @@
 package de.ralfhergert.gw2.api.v2;
 
+/**
+ * A fact describing that an attribute will be altered.
+ */
 public class Gw2FactAttributeAdjust extends Gw2Fact {
 
     private int value;

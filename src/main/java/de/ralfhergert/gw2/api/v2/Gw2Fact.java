@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.net.URL;
 
+/**
+ * General class for facts. Different fact types do exist. Each of them has a dedicated class.
+ */
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Gw2FactAttributeAdjust.class, name = "AttributeAdjust"),
     @JsonSubTypes.Type(value = Gw2FactBuff.class, name = "Buff"),

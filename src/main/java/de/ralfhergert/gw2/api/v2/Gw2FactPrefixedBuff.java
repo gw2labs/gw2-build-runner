@@ -2,6 +2,7 @@ package de.ralfhergert.gw2.api.v2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class Gw2FactPrefixedBuff extends Gw2Fact {
 
     private Gw2BuffConditionType status;

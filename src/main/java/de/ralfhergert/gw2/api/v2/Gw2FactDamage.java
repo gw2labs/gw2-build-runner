@@ -2,6 +2,9 @@ package de.ralfhergert.gw2.api.v2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * A fact describing a damage.
+ */
 public class Gw2FactDamage extends Gw2Fact {
 
     private int hitCount;
