@@ -13,6 +13,9 @@ public class TrinketConfigurationParser implements Function<String,TrinketConfig
 
     @Override
     public TrinketConfiguration apply(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException("configuration text must not be null");
+        }
         final List<TrinketSlot> slots;
         final String[] fragments = text.split("=");
 
