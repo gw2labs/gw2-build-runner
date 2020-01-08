@@ -12,7 +12,9 @@ import java.util.List;
 
 public abstract class StackingBuffOrCondition implements Assignable<Gw2Character> {
 
-    private final ValueChangedHandler<LocalTime,Gw2Character> timeToLiveListener = (v) -> checkTimeToLive();
+    private final ValueChangedHandler<LocalTime,Gw2Character> characterTimeListener = (time) -> checkTimeToLive(time.getValue());
+    private final ValueChangedHandler<Double,Gw2Character> durationWearOffListener;
+
     private final List<CharacterAttributeModifier> modifiers = new ArrayList<>();
 
     private final BuffOrConditionType type;
@@ -23,6 +25,7 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
     private LocalTime applicationTime = null;
     private int appliedNumberOfStacks = 0;
 
+    private double durationWearOff = 1;
     private Duration remainingDuration;
     private LocalTime remainingDurationMeasured;
 
@@ -30,6 +33,14 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
         this.type = type;
         this.wantedNumberOfStacks = wantedNumberOfStacks;
         this.duration = duration;
+
+        if (type.getEffectType() == EffectType.Boon) {
+            durationWearOffListener = (boonDuration) -> durationWearOff = 1 / (1 + boonDuration.getValue());
+        } else if (type.getEffectType() == EffectType.Condition) {
+            durationWearOffListener = (conditionDuration) -> durationWearOff = 1 + conditionDuration.getValue();
+        } else {
+            durationWearOffListener = null;
+        }
     }
 
     public BuffOrConditionType getType() {
@@ -64,7 +75,16 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
         }
 
         this.gw2Character = gw2Character;
-        gw2Character.getAttribute(CharacterAttribute.CharacterAge).addChangedHandler(timeToLiveListener);
+        gw2Character.getAttribute(CharacterAttribute.CharacterAge).addChangedHandler(characterTimeListener);
+        switch (type.getEffectType()) {
+            case Boon:
+                gw2Character.getAttribute(CharacterAttribute.BoonDuration).addChangedHandler(durationWearOffListener);
+                break;
+            case Condition:
+                gw2Character.getAttribute(CharacterAttribute.ConditionDuration).addChangedHandler(durationWearOffListener);
+                break;
+            default: /* fall-through */
+        }
 
         applicationTime = gw2Character.getAttributeValue(CharacterAttribute.CharacterAge, LocalTime.class);
         remainingDuration = Duration.from(duration);
@@ -81,17 +101,22 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
     @Override
     public void resignFrom(Gw2Character gw2Character) {
         this.gw2Character = null;
-        gw2Character.getAttribute(CharacterAttribute.CharacterAge).removeChangedHandler(timeToLiveListener);
+        gw2Character.getAttribute(CharacterAttribute.CharacterAge).removeChangedHandler(characterTimeListener);
+        gw2Character.getAttribute(CharacterAttribute.BoonDuration).removeChangedHandler(durationWearOffListener);
+        gw2Character.getAttribute(CharacterAttribute.ConditionDuration).removeChangedHandler(durationWearOffListener);
         gw2Character.removeBuffOrCondition(this);
         modifiers.forEach(modifier -> modifier.resignFrom(gw2Character));
     }
 
-    private void checkTimeToLive() {
-        if (gw2Character == null) {
+    private void checkTimeToLive(LocalTime characterTime) {
+        Duration timePast = Duration.between(remainingDurationMeasured, characterTime);
+        if (timePast.isNegative()) {
             return;
         }
-        final LocalTime characterTime = gw2Character.getAttributeValue(CharacterAttribute.CharacterAge, LocalTime.class);
-        if (characterTime.isAfter(remainingDurationMeasured.plus(remainingDuration))) {
+        remainingDuration = remainingDuration.minus(timePast.multipliedBy((long)(1000 * durationWearOff)).dividedBy(1000));
+        remainingDurationMeasured = characterTime;
+
+        if (remainingDuration.isNegative() || remainingDuration.isZero()) {
             resignFrom(gw2Character);
         }
     }
