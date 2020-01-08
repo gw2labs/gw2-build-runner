@@ -12,12 +12,12 @@ public class CharacterAttributeValue<Type> extends Value<Type,Gw2Character> {
     /** This accessor can be a facade to implement value capping. */
     private Function<Gw2Character,Type> valueAccessor = super::getValue;
 
-    public CharacterAttributeValue(CharacterAttribute key) {
-        this(key, (Type)key.getBaseValue());
+    public CharacterAttributeValue(CharacterAttribute key, Gw2Character gw2Character) {
+        this(key, (Type)key.getBaseValue(), gw2Character);
     }
 
-    public CharacterAttributeValue(CharacterAttribute key, Type baseValue) {
-        super(key.name(), baseValue);
+    public CharacterAttributeValue(CharacterAttribute key, Type baseValue, Gw2Character gw2Character) {
+        super(key.name(), baseValue, gw2Character);
         this.key = key;
     }
 

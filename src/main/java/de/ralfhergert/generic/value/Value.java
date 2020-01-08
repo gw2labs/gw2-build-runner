@@ -13,6 +13,7 @@ public class Value<ValueType,OwnerType> {
 
     private final String name;
     private final ValueType startValue;
+    private final OwnerType owner;
 
     private final List<ValueModifier<ValueType,OwnerType>> modifiers = new ArrayList<>();
     private final List<ValueChangedHandler<ValueType,OwnerType>> changedHandlers = new ArrayList<>();
@@ -20,10 +21,11 @@ public class Value<ValueType,OwnerType> {
     private boolean isModified = false;
     private ValueType finalValue;
 
-    public Value(String name, ValueType startValue) {
+    public Value(String name, ValueType startValue, OwnerType owner) {
         this.name = name;
         this.startValue = startValue;
         this.finalValue = startValue;
+        this.owner = owner;
     }
 
     public String getName() {

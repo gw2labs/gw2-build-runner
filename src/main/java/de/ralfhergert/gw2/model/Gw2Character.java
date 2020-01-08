@@ -30,9 +30,9 @@ public class Gw2Character {
         // initialize all character attributes
         Stream.of(CharacterAttribute.values())
             .filter(attributeKey -> attributeKey.getProfession() == null || attributeKey.getProfession().equals(profession))
-            .forEach(attributeKey -> attributes.put(attributeKey, new CharacterAttributeValue(attributeKey).setCapValue(attributeKey.getCapValue())));
+            .forEach(attributeKey -> attributes.put(attributeKey, new CharacterAttributeValue(attributeKey, this).setCapValue(attributeKey.getCapValue())));
         // override the health attribute.
-        attributes.put(CharacterAttribute.Health, new CharacterAttributeValue(CharacterAttribute.Health, profession.getBaseHealth()));
+        attributes.put(CharacterAttribute.Health, new CharacterAttributeValue(CharacterAttribute.Health, profession.getBaseHealth(), this));
 
         characterTimeModifier.assignTo(this);
         // add mechanics
