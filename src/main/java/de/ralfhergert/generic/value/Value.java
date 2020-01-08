@@ -32,10 +32,10 @@ public class Value<ValueType,OwnerType> {
         return name;
     }
 
-    public ValueType getValue(OwnerType context) {
+    public ValueType getValue() {
         if (isModified) {
             finalValue = startValue;
-            modifiers.forEach(modifier -> finalValue = modifier.modify(finalValue, context));
+            modifiers.forEach(modifier -> finalValue = modifier.modify(finalValue, owner));
             isModified = false;
         }
         return finalValue;

@@ -2,7 +2,7 @@ package de.ralfhergert.gw2.model;
 
 import de.ralfhergert.generic.value.Value;
 
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class CharacterAttributeValue<Type> extends Value<Type,Gw2Character> {
 
@@ -10,7 +10,7 @@ public class CharacterAttributeValue<Type> extends Value<Type,Gw2Character> {
 
     private Type capValue; // can be null
     /** This accessor can be a facade to implement value capping. */
-    private Function<Gw2Character,Type> valueAccessor = super::getValue;
+    private Supplier<Type> valueAccessor = super::getValue;
 
     public CharacterAttributeValue(CharacterAttribute key, Gw2Character gw2Character) {
         this(key, (Type)key.getBaseValue(), gw2Character);
@@ -35,8 +35,8 @@ public class CharacterAttributeValue<Type> extends Value<Type,Gw2Character> {
         return this;
     }
 
-    private Type getCappedValue(Gw2Character context) {
-        final Type value = super.getValue(context);
+    private Type getCappedValue() {
+        final Type value = super.getValue();
         if (capValue == null) {
             return value;
         }
@@ -50,7 +50,7 @@ public class CharacterAttributeValue<Type> extends Value<Type,Gw2Character> {
     }
 
     @Override
-    public Type getValue(Gw2Character context) {
-        return valueAccessor.apply(context);
+    public Type getValue() {
+        return valueAccessor.get();
     }
 }

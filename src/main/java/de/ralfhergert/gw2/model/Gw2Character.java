@@ -57,11 +57,11 @@ public class Gw2Character {
     }
 
     public Object getAttributeValue(CharacterAttribute key) {
-        return attributes.get(key).getValue(this);
+        return attributes.get(key).getValue();
     }
 
     public <Type> Type getAttributeValue(CharacterAttribute key, Class<Type> clazz) {
-        return clazz.cast(attributes.get(key).getValue(this));
+        return clazz.cast(attributes.get(key).getValue());
     }
 
     public Range getWeaponStrength() {
