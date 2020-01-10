@@ -13,6 +13,9 @@ public class ArmorConfigurationParser implements Function<String,ArmorConfigurat
 
     @Override
     public ArmorConfiguration apply(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException("configuration must not be null");
+        }
         final List<ArmorSlot> slots;
         final String[] fragments = text.split("=");
 
