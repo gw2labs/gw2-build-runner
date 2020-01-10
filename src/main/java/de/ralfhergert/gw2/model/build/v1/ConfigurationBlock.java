@@ -7,15 +7,6 @@ public class ConfigurationBlock {
     private final String identifier;
     private final String content;
 
-    public ConfigurationBlock(String text) {
-        final int identifierIndex = text.indexOf(':');
-        if (identifierIndex < 0) {
-            throw new IllegalArgumentException("block text has no identifier");
-        }
-        identifier = text.substring(0, identifierIndex);
-        content = text.substring(identifierIndex + 1);
-    }
-
     public ConfigurationBlock(String identifier, String content) {
         this.identifier = identifier;
         this.content = content;
