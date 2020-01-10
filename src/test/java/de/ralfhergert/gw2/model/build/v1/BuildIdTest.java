@@ -48,6 +48,13 @@ public class BuildIdTest {
     }
 
     @Test
+    public void testAgainstDuplicatedSlotUse() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("multiple configurations for equipment slots [Head] have been found.");
+        new BuildId().createFrom("GW2L1-p:Engi-e:a:Head=Minstrel-e:a:Head=Zojja");
+    }
+
+    @Test
     public void testMinimalBuildIdForNakedGuardian() {
         Gw2Character character = new BuildId().createFrom("GW2L1-p:G");
         Assert.assertNotNull("character should not be null", character);
