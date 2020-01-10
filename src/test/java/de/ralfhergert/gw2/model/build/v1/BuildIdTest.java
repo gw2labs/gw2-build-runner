@@ -41,6 +41,13 @@ public class BuildIdTest {
     }
 
     @Test
+    public void testAgainstUnknownProfession() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("profession in buildId could not be mapped to one of");
+        new BuildId().createFrom("GW2L1-p:Foobar");
+    }
+
+    @Test
     public void testMinimalBuildIdForNakedGuardian() {
         Gw2Character character = new BuildId().createFrom("GW2L1-p:G");
         Assert.assertNotNull("character should not be null", character);
