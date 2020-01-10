@@ -20,6 +20,7 @@ public class Gw2Character {
     private final Profession profession;
 
     private final VariableCharacterTimeModifier<LocalTime> characterTimeModifier = new VariableCharacterTimeModifier<>(this);
+    private final VariableCharacterEquipmentModifier characterEquipmentModifier = new VariableCharacterEquipmentModifier(this);
 
     private Map<CharacterAttribute,CharacterAttributeValue> attributes = new HashMap<>();
     private List<StackingBuffOrCondition> buffOrConditions = new ArrayList<>();
@@ -35,6 +36,7 @@ public class Gw2Character {
         attributes.put(CharacterAttribute.Health, new CharacterAttributeValue(CharacterAttribute.Health, profession.getBaseHealth(), this));
 
         characterTimeModifier.assignTo(this);
+        characterEquipmentModifier.assignTo(this);
         // add mechanics
         new VitalityToHealthModifier(this).assignTo(this);
         new ArmorModifier(this).assignTo(this);
@@ -46,6 +48,8 @@ public class Gw2Character {
         new MovementSpeedModifier(this, CharacterAttribute.MovementSpeedBackwardInCombat).assignTo(this);
         new FuryToCriticalChanceModifier(this).assignTo(this);
         new VigorToEnduranceRegenerationModifier(this).assignTo(this);
+
+        new RuneModifier().assignTo(this);
     }
 
     public Profession getProfession() {
@@ -94,12 +98,17 @@ public class Gw2Character {
         return this;
     }
 
+    public Stream<Equipment<?>> getAssignedEquipment() {
+        return assignedEquipment.values().stream();
+    }
+
     public Gw2Character equip(Equipment<?> piece) {
         final Equipment<?> previousEquipment = assignedEquipment.put(piece.getSlot(), piece);
         if (previousEquipment != null) {
             previousEquipment.getModifiers().forEach(modifier -> modifier.resignFrom(this));
         }
         piece.getModifiers().forEach(modifier -> modifier.assignTo(this));
+        attributes.get(CharacterAttribute.Equipment).markAsModified();
         return this;
     }
 

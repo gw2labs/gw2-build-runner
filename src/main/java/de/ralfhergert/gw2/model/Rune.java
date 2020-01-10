@@ -3,10 +3,12 @@ package de.ralfhergert.gw2.model;
 import de.ralfhergert.generic.number.ScaleOperation;
 import de.ralfhergert.generic.value.Assignable;
 import de.ralfhergert.generic.value.AssignableGroup;
+import de.ralfhergert.gw2.ability.AfterUsingEliteSkillTrigger;
 import de.ralfhergert.gw2.ability.WhenInCombatTrigger;
 import de.ralfhergert.gw2.model.effect.FuryBuff;
 import de.ralfhergert.gw2.model.effect.MightBuff;
 import de.ralfhergert.generic.function.TriggerableGroup;
+import de.ralfhergert.gw2.model.effect.ShockingAura;
 import de.ralfhergert.gw2.model.effect.VigorBuff;
 import de.ralfhergert.gw2.modifier.CharacterAttributeModifier;
 
@@ -25,6 +27,18 @@ public enum Rune {
                 () -> new MightBuff(6, Duration.ofSeconds(6)),
                 () -> new FuryBuff(1, Duration.ofSeconds(6)),
                 () -> new VigorBuff(1, Duration.ofSeconds(6))
+            ))
+        )),
+    Surging("Superior Rune of Surging",
+        new CharacterAttributeModifier(CharacterAttribute.Power, 25),
+        new CharacterAttributeModifier(CharacterAttribute.BoonDuration, 0.05),
+        new CharacterAttributeModifier(CharacterAttribute.Power, 50),
+        new CharacterAttributeModifier(CharacterAttribute.BoonDuration, 0.1),
+        new CharacterAttributeModifier(CharacterAttribute.Power, 100),
+        new AssignableGroup<>(
+            new CharacterAttributeModifier(CharacterAttribute.MovementSpeed, new ScaleOperation(1.25)),
+            new AfterUsingEliteSkillTrigger(Duration.ofSeconds(45), new TriggerableGroup(
+                () -> new ShockingAura(Duration.ofSeconds(4))
             ))
         ));
 

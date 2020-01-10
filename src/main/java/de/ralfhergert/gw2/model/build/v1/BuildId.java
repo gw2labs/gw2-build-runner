@@ -37,6 +37,7 @@ public class BuildId {
         final List<EquipmentConfiguration> equipmentConfigurations = new ArrayList<>();
         equipmentConfigurations.addAll(readArmorConfigurations(Collections.unmodifiableList(blocks)));
         equipmentConfigurations.addAll(readTrinketConfigurations(Collections.unmodifiableList(blocks)));
+        equipmentConfigurations.addAll(readRuneConfigurations(Collections.unmodifiableList(blocks)));
 
         validateEquipmentConfigurationForDuplicateSlots(equipmentConfigurations);
 
@@ -87,6 +88,15 @@ public class BuildId {
      */
     private List<TrinketConfiguration> readTrinketConfigurations(Collection<ConfigurationBlock> blocks) {
         return new ConfigurationBlockMapper<>("e:t", new TrinketConfigurationParser())
+            .apply(blocks.stream())
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * This method uses all blocks starting with "e:r:". (short for equipment runes)
+     */
+    private List<RuneConfiguration> readRuneConfigurations(Collection<ConfigurationBlock> blocks) {
+        return new ConfigurationBlockMapper<>("e:r", new RuneConfigurationParser())
             .apply(blocks.stream())
             .collect(Collectors.toList());
     }

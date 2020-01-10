@@ -32,6 +32,10 @@ public class Value<ValueType,OwnerType> {
         return name;
     }
 
+    public OwnerType getOwner() {
+        return owner;
+    }
+
     public ValueType getValue() {
         if (isModified) {
             finalValue = startValue;

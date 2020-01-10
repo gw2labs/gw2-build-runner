@@ -44,7 +44,9 @@ public enum CharacterAttribute {
     // dynamic state attributes
     InCombat(Boolean.class, null, false, null, "indicates whether the character is in combat"),
     CharacterAge(LocalTime.class, null, LocalTime.of(0, 0, 0, 0), null, "current timestamp the character is at"),
-    EffectingBuffOrConditions(StackingBuffOrCondition[].class, null, null, null, "attribute is used to signal when buffs or condition are un/applied");
+    EffectingBuffOrConditions(StackingBuffOrCondition[].class, null, null, null, "attribute is used to signal when buffs or condition are un/applied"),
+    Equipment(Equipment[].class, null, null, null, "attribute is used to signal when equipment has been changed"),
+    AuraDuration(Double.class, null, 0d, 1d, "Increase the duration of all applied auras");
 
     private final Class<?> valueType;
     private final Profession profession;

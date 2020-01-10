@@ -192,4 +192,26 @@ public class BuildIdTest {
         Assert.assertEquals("Concentration should be", 515, gw2Character.getAttributeValue(CharacterAttribute.Concentration));
         Assert.assertEquals("BoonDuration should be", 0.3433, gw2Character.getAttributeValue(CharacterAttribute.BoonDuration, Double.class), 0.0001);
     }
+
+    @Test
+    public void testConfigureElementalistWith6FireworksRunes() {
+        Gw2Character gw2Character = new BuildId().createFrom("GW2L1-p:Ele-e:r:Fireworks");
+        Assert.assertEquals("profession should be", Profession.Elementalist, gw2Character.getProfession());
+        Assert.assertEquals("power should be", 1175, gw2Character.getAttributeValue(CharacterAttribute.Power));
+        Assert.assertEquals("toughness should be", 1000, gw2Character.getAttributeValue(CharacterAttribute.Toughness));
+        Assert.assertEquals("vitality should be", 1000, gw2Character.getAttributeValue(CharacterAttribute.Vitality));
+        Assert.assertEquals("precision should be", 1000, gw2Character.getAttributeValue(CharacterAttribute.Precision));
+        Assert.assertEquals("ferocity should be", 0, gw2Character.getAttributeValue(CharacterAttribute.Ferocity));
+        Assert.assertEquals("armor should be", 1000, gw2Character.getAttributeValue(CharacterAttribute.Armor));
+        Assert.assertEquals("health should be", 11645, gw2Character.getAttributeValue(CharacterAttribute.Health));
+        Assert.assertEquals("CHC should be", 0.05, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
+        Assert.assertEquals("CHD should be", 1.5, gw2Character.getAttributeValue(CharacterAttribute.CriticalDamage));
+        Assert.assertEquals("HealingPower should be", 0, gw2Character.getAttributeValue(CharacterAttribute.HealingPower));
+        Assert.assertEquals("ConditionDuration should be", 0d, gw2Character.getAttributeValue(CharacterAttribute.ConditionDuration));
+        Assert.assertEquals("ConditionDamage should be", 0, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage));
+        Assert.assertEquals("Expertise should be", 0, gw2Character.getAttributeValue(CharacterAttribute.Expertise));
+        Assert.assertEquals("Concentration should be", 0, gw2Character.getAttributeValue(CharacterAttribute.Concentration));
+        Assert.assertEquals("BoonDuration should be", 0.15, gw2Character.getAttributeValue(CharacterAttribute.BoonDuration, Double.class), 0.0001);
+        Assert.assertEquals("MovementSpeed should be", 1.25, gw2Character.getAttributeValue(CharacterAttribute.MovementSpeed, Double.class), 0.0001);
+    }
 }

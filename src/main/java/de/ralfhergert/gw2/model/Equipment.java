@@ -10,10 +10,11 @@ public abstract class Equipment<Self extends Equipment<Self>> {
 
     public enum Type {
         Armor,
-        Trinket,
-        Weapon,
+        Enhancement,
         Nourishment,
-        Enhancement
+        Rune,
+        Trinket,
+        Weapon
     }
 
     private Type type;
