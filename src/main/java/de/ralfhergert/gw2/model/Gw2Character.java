@@ -21,6 +21,7 @@ public class Gw2Character {
 
     private final VariableCharacterTimeModifier<LocalTime> characterTimeModifier = new VariableCharacterTimeModifier<>(this);
     private final VariableCharacterEquipmentModifier characterEquipmentModifier = new VariableCharacterEquipmentModifier(this);
+    private final GenericCharacterAttributeModifier<Boolean> characterInCombatModifier = new GenericCharacterAttributeModifier<>(this, CharacterAttribute.InCombat);
 
     private Map<CharacterAttribute,CharacterAttributeValue> attributes = new HashMap<>();
     private List<StackingBuffOrCondition> buffOrConditions = new ArrayList<>();
@@ -37,6 +38,8 @@ public class Gw2Character {
 
         characterTimeModifier.assignTo(this);
         characterEquipmentModifier.assignTo(this);
+        characterInCombatModifier.assignTo(this);
+
         // add mechanics
         new VitalityToHealthModifier(this).assignTo(this);
         new ArmorModifier(this).assignTo(this);
@@ -114,6 +117,11 @@ public class Gw2Character {
 
     public Gw2Character advance(TemporalAmount delta) {
         characterTimeModifier.advance(Duration.from(delta));
+        return this;
+    }
+
+    public Gw2Character setInCombat(boolean inCombat) {
+        characterInCombatModifier.setValue(inCombat);
         return this;
     }
 }

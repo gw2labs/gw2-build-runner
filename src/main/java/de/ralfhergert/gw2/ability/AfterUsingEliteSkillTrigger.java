@@ -19,11 +19,11 @@ public class AfterUsingEliteSkillTrigger implements Assignable<Gw2Character> {
     private final ValueChangedHandler<Object,Gw2Character> changeListener = value -> this.check(value.getOwner());
 
     private final Duration cooldown;
-    private final Triggerable triggerable;
+    private final Triggerable<Gw2Character> triggerable;
 
     private LocalTime lastTriggered = null;
 
-    public AfterUsingEliteSkillTrigger(Duration cooldown, Triggerable triggerable) {
+    public AfterUsingEliteSkillTrigger(Duration cooldown, Triggerable<Gw2Character> triggerable) {
         this.cooldown = cooldown;
         this.triggerable = triggerable;
     }
@@ -47,6 +47,6 @@ public class AfterUsingEliteSkillTrigger implements Assignable<Gw2Character> {
             return;
         }
         lastTriggered = currentCharacterTime;
-        triggerable.trigger();
+        triggerable.trigger(gw2Character);
     }
 }

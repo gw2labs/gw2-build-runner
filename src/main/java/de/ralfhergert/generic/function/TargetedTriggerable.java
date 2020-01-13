@@ -1,12 +1,10 @@
 package de.ralfhergert.generic.function;
 
-import de.ralfhergert.gw2.model.Gw2Character;
-
 /**
  * Interface to implement triggerable actions as lambdas.
  */
 @FunctionalInterface
-public interface Triggerable<Source> {
+public interface TargetedTriggerable<Source,Target> {
 
-    void trigger(Source source);
+    void trigger(Source source, Target target);
 }

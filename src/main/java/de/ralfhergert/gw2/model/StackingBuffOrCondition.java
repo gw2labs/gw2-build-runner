@@ -20,8 +20,9 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
     private final BuffOrConditionType type;
     private final int wantedNumberOfStacks;
     private final Duration duration;
+    private final Gw2Character sourceCharacter;
 
-    private Gw2Character gw2Character;
+    private Gw2Character targetCharacter;
     private LocalTime applicationTime = null;
     private int appliedNumberOfStacks = 0;
 
@@ -29,10 +30,11 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
     private Duration remainingDuration;
     private LocalTime remainingDurationMeasured;
 
-    public StackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration) {
+    public StackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration, Gw2Character sourceCharacter) {
         this.type = type;
         this.wantedNumberOfStacks = wantedNumberOfStacks;
         this.duration = duration;
+        this.sourceCharacter = sourceCharacter;
 
         if (type.getEffectType() == EffectType.Boon) {
             durationWearOffListener = (boonDuration) -> durationWearOff = 1 / (1 + boonDuration.getValue());
@@ -74,7 +76,7 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
             return; // don't apply this buff or condition.
         }
 
-        this.gw2Character = gw2Character;
+        this.targetCharacter = gw2Character;
         gw2Character.getAttribute(CharacterAttribute.CharacterAge).addChangedHandler(characterTimeListener);
         switch (type.getEffectType()) {
             case Boon:
@@ -100,7 +102,7 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
 
     @Override
     public void resignFrom(Gw2Character gw2Character) {
-        this.gw2Character = null;
+        this.targetCharacter = null;
         gw2Character.getAttribute(CharacterAttribute.CharacterAge).removeChangedHandler(characterTimeListener);
         gw2Character.getAttribute(CharacterAttribute.BoonDuration).removeChangedHandler(durationWearOffListener);
         gw2Character.getAttribute(CharacterAttribute.ConditionDuration).removeChangedHandler(durationWearOffListener);
@@ -117,7 +119,7 @@ public abstract class StackingBuffOrCondition implements Assignable<Gw2Character
         remainingDurationMeasured = characterTime;
 
         if (remainingDuration.isNegative() || remainingDuration.isZero()) {
-            resignFrom(gw2Character);
+            resignFrom(targetCharacter);
         }
     }
 }

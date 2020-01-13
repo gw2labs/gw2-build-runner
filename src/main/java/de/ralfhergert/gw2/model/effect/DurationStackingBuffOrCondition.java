@@ -1,5 +1,6 @@
 package de.ralfhergert.gw2.model.effect;
 
+import de.ralfhergert.gw2.model.Gw2Character;
 import de.ralfhergert.gw2.model.StackingBuffOrCondition;
 import de.ralfhergert.gw2.model.BuffOrConditionType;
 import de.ralfhergert.gw2.modifier.CharacterAttributeModifier;
@@ -11,8 +12,8 @@ public abstract class DurationStackingBuffOrCondition extends StackingBuffOrCond
 
     private final Duration durationCap;
 
-    public DurationStackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration, Duration durationCap) {
-        super(type, wantedNumberOfStacks, duration);
+    public DurationStackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration, Duration durationCap, Gw2Character sourceCharacter) {
+        super(type, wantedNumberOfStacks, duration, sourceCharacter);
         this.durationCap = durationCap;
     }
 

@@ -1,5 +1,6 @@
 package de.ralfhergert.gw2.model.effect;
 
+import de.ralfhergert.gw2.model.Gw2Character;
 import de.ralfhergert.gw2.model.StackingBuffOrCondition;
 import de.ralfhergert.gw2.model.BuffOrConditionType;
 import de.ralfhergert.gw2.modifier.CharacterAttributeModifier;
@@ -17,8 +18,8 @@ import java.util.Collection;
  */
 public abstract class IntensityStackingBuffOrCondition extends StackingBuffOrCondition {
 
-    public IntensityStackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration) {
-        super(type, wantedNumberOfStacks, duration);
+    public IntensityStackingBuffOrCondition(BuffOrConditionType type, int wantedNumberOfStacks, Duration duration, Gw2Character sourceCharacter) {
+        super(type, wantedNumberOfStacks, duration, sourceCharacter);
     }
 
     protected abstract Collection<CharacterAttributeModifier> createModifiersFor(int numberOfStacks);

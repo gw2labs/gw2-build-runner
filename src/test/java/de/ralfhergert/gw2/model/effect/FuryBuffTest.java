@@ -19,7 +19,7 @@ public class FuryBuffTest {
         Assert.assertEquals("number of buffs", 0, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("critical chance should be", 0.05, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
-        new FuryBuff(1, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new FuryBuff(1, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("critical chance should be", 0.25, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
@@ -42,7 +42,7 @@ public class FuryBuffTest {
         Assert.assertEquals("critical chance should be", 0.05, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
         // apply a single buff with 9 stacks
-        new FuryBuff(9, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new FuryBuff(9, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of fury stacks", 9, gw2Character.getBuffOrConditions(BuffOrConditionType.Fury)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -51,7 +51,7 @@ public class FuryBuffTest {
         Assert.assertEquals("critical chance should be", 0.25, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
         // try applying one more buff with 1 stack - it should be nullified.
-        new FuryBuff(1, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new FuryBuff(1, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of fury stacks", 9, gw2Character.getBuffOrConditions(BuffOrConditionType.Fury)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -68,7 +68,7 @@ public class FuryBuffTest {
         Assert.assertEquals("critical chance should be", 0.05, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
         // apply a single buff with 5 stacks
-        new FuryBuff(5, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new FuryBuff(5, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of fury stacks", 5, gw2Character.getBuffOrConditions(BuffOrConditionType.Fury)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -77,7 +77,7 @@ public class FuryBuffTest {
         Assert.assertEquals("critical chance should be", 0.25, gw2Character.getAttributeValue(CharacterAttribute.CriticalChance, Double.class), 0.0001);
 
         // try applying one more buff with 5 stack - it should be partially applied.
-        new FuryBuff(5, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new FuryBuff(5, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 2, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of fury stacks", 9, gw2Character.getBuffOrConditions(BuffOrConditionType.Fury)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)

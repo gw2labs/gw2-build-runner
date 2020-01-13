@@ -22,7 +22,7 @@ public class MightBuffTest {
         Assert.assertEquals("power should be", 1000, gw2Character.getAttributeValue(CharacterAttribute.Power, Integer.class).intValue());
         Assert.assertEquals("condition damage should be", 0, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
 
-        new MightBuff(3, Duration.ofSeconds(5)).assignTo(gw2Character);
+        new MightBuff(3, Duration.ofSeconds(5), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("power should be", 1090, gw2Character.getAttributeValue(CharacterAttribute.Power, Integer.class).intValue());
         Assert.assertEquals("condition damage should be", 90, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
@@ -49,7 +49,7 @@ public class MightBuffTest {
         Assert.assertEquals("condition damage should be", 0, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
 
         // apply a single buff with 25 stacks
-        new MightBuff(25, Duration.ofSeconds(1)).assignTo(gw2Character);
+        new MightBuff(25, Duration.ofSeconds(1), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of might stacks", 25, gw2Character.getBuffOrConditions(BuffOrConditionType.Might)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -59,7 +59,7 @@ public class MightBuffTest {
         Assert.assertEquals("condition damage should be", 750, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
 
         // try applying one stack more - verify that it was nullified
-        new MightBuff(1, Duration.ofSeconds(1)).assignTo(gw2Character);
+        new MightBuff(1, Duration.ofSeconds(1), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of might stacks", 25, gw2Character.getBuffOrConditions(BuffOrConditionType.Might)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -78,7 +78,7 @@ public class MightBuffTest {
         Assert.assertEquals("condition damage should be", 0, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
 
         // apply a single buff with 20 stacks
-        new MightBuff(20, Duration.ofSeconds(1)).assignTo(gw2Character);
+        new MightBuff(20, Duration.ofSeconds(1), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of might stacks", 20, gw2Character.getBuffOrConditions(BuffOrConditionType.Might)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -88,7 +88,7 @@ public class MightBuffTest {
         Assert.assertEquals("condition damage should be", 600, gw2Character.getAttributeValue(CharacterAttribute.ConditionDamage, Integer.class).intValue());
 
         // apply one more buff with 10 stack - only 5 of them should be applied.
-        new MightBuff(10, Duration.ofSeconds(1)).assignTo(gw2Character);
+        new MightBuff(10, Duration.ofSeconds(1), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 2, gw2Character.getBuffOrConditions().count());
         Assert.assertEquals("number of might stacks", 25, gw2Character.getBuffOrConditions(BuffOrConditionType.Might)
             .map(StackingBuffOrCondition::getAppliedNumberOfStacks)
@@ -106,7 +106,7 @@ public class MightBuffTest {
         Assert.assertEquals("boon duration should be", 0, gw2Character.getAttributeValue(CharacterAttribute.BoonDuration, Double.class), 0.0001);
 
         // apply a single stack of might lasting 4 seconds
-        new MightBuff(1, Duration.ofSeconds(4)).assignTo(gw2Character);
+        new MightBuff(1, Duration.ofSeconds(4), gw2Character).assignTo(gw2Character);
         Assert.assertEquals("number of buffs", 1, gw2Character.getBuffOrConditions().count());
 
         /* after 2 sec alter the characters boon duration to 25%

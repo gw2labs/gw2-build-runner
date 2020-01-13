@@ -3,6 +3,7 @@ package de.ralfhergert.gw2.model.effect;
 import de.ralfhergert.generic.number.IncreaseByInt;
 import de.ralfhergert.gw2.model.BuffOrConditionType;
 import de.ralfhergert.gw2.model.CharacterAttribute;
+import de.ralfhergert.gw2.model.Gw2Character;
 import de.ralfhergert.gw2.modifier.CharacterAttributeModifier;
 
 import java.time.Duration;
@@ -15,8 +16,8 @@ import java.util.Collection;
  */
 public class MightBuff extends IntensityStackingBuffOrCondition {
 
-    public MightBuff(int numberOfStacks, Duration duration) {
-        super(BuffOrConditionType.Might, numberOfStacks, duration);
+    public MightBuff(int numberOfStacks, Duration duration, Gw2Character sourceCharacter) {
+        super(BuffOrConditionType.Might, numberOfStacks, duration, sourceCharacter);
     }
 
     @Override

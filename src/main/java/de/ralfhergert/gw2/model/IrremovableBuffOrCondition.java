@@ -19,6 +19,7 @@ public abstract class IrremovableBuffOrCondition implements Assignable<Gw2Charac
 
     private final BuffOrConditionType type;
     private final Duration duration;
+    private final Gw2Character sourceCharacter;
 
     private Gw2Character gw2Character;
     private LocalTime applicationTime = null;
@@ -27,9 +28,10 @@ public abstract class IrremovableBuffOrCondition implements Assignable<Gw2Charac
     private Duration remainingDuration;
     private LocalTime remainingDurationMeasured;
 
-    public IrremovableBuffOrCondition(BuffOrConditionType type, Duration duration) {
+    public IrremovableBuffOrCondition(BuffOrConditionType type, Duration duration, Gw2Character sourceCharacter) {
         this.type = type;
         this.duration = duration;
+        this.sourceCharacter = sourceCharacter;
 
         if (type.getEffectType() == EffectType.Aura) {
             durationWearOffListener = (auraDuration) -> durationWearOff = 1 / (1 + auraDuration.getValue());
