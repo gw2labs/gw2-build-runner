@@ -27,6 +27,10 @@ public class Gw2Character {
     private List<StackingBuffOrCondition> buffOrConditions = new ArrayList<>();
     private Map<EquipmentSlot,Equipment<?>> assignedEquipment = new HashMap<>();
 
+    private World world;
+    private Team team;
+    private WorldPosition position;
+
     public Gw2Character(Profession profession) {
         this.profession = profession;
         // initialize all character attributes
@@ -123,5 +127,30 @@ public class Gw2Character {
     public Gw2Character setInCombat(boolean inCombat) {
         characterInCombatModifier.setValue(inCombat);
         return this;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public Gw2Character setWorld(World world) {
+        this.world = world;
+        return this;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public WorldPosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(WorldPosition position) {
+        this.position = position;
     }
 }
